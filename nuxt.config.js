@@ -13,6 +13,10 @@ export default {
     ],
     link: [
       { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+    ],
+    script: [
+      {src: '/scripts/ToggleHiddenMenu.js', body: true},
+      { src: "https://kit.fontawesome.com/b194ce6fcf.js", body: true }
     ]
   },
   /*
@@ -23,11 +27,15 @@ export default {
   ** Global CSS
   */
   css: [
+    '~/assets/scss/main.scss',
+    '~/assets/scss/nevvi.scss',
+    '~/assets/scss/value.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
+    { src: '~/plugins/vue-notifications.js', ssr: false }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -39,7 +47,7 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios',
+    '@nuxtjs/axios'
   ],
   /*
   ** Axios module configuration
