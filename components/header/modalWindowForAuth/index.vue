@@ -12,7 +12,7 @@
                 <div class="modal-body-content">
                     <Social hidden/>
                     <Phrases />
-                    <div class="signin" v-show="mode === 'signin'">
+                    <div class="signin mt-1" v-show="mode === 'signin'">
                         <div class="inputs text-center">
                             <form @submit.prevent="signin()">
                                 <input class="m-0auto mb-1" type="email" placeholder="Электронный адрес" required>
@@ -81,7 +81,7 @@ import Phrases from './Phrases'
 
 <style lang="scss">@import "~/assets/scss/value.scss";
 // Variables
-$width-input: 80%;
+$width-input: 70%;
 
 .modal {
   &-body {
@@ -90,7 +90,7 @@ $width-input: 80%;
         display: flex;
 
         .btn {
-          font-size: 1.5rem;
+          font-size: 1.3rem;
           font-weight: 100;
           cursor: pointer;
           width: 40%;
@@ -128,6 +128,10 @@ $width-input: 80%;
           input {
             width: $width-input;
             color: rgb(12, 12, 77);
+            transition: .5s;
+            &:focus {
+              width: 80%;
+            }
           }
 
           button {

@@ -8,14 +8,13 @@
         <Search />
         <div class="hidden-block">
           <div class="nav-items ml-1">
-            <ButtonAdd />
+            <ButtonAdd :toggleModalAuth="toggleModalAuth" />
             <Profile :toggleModalAuth="toggleModalAuth" />
           </div>
         </div>
         <SmallLoginBtn hidden/>
     </nav>
     <ModalWindowForAuth  v-if="showModalAuth" :toggleModalAuth="toggleModalAuth" />
-    <div class="freePlaceUnderHeader"></div> <!-- Опускает основной сайт под шапку -->
   </div>
 </template>
 

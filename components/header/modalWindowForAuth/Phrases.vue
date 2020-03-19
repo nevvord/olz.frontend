@@ -1,6 +1,7 @@
 <template>
     <div>
-        <div v-html="getPhrase()" class="py-1 px-2 text-center color-blue"></div>
+        <div v-html="getPhrase()" class="py-1 px-2 text-center color-blue font-cursive ts"></div>
+        
     </div>
 </template>
 
@@ -45,7 +46,7 @@
         methods: {
             getPhrase() {
                 function getRandomInt(max) {
-                    return Math.floor(Math.random() * Math.floor(max));
+                    return Math.floor(Math.random() * Math.floor(max))
                 }                
                 const rundomNum = getRandomInt(this.phrases.length)
                 const phrase = `${this.phrases[rundomNum].icon} ${this.phrases[rundomNum].phrase}`
