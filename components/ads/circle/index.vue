@@ -7,18 +7,18 @@
     </div>
     <div class="container py-2">
       <div class="partners">
-        <a href="http://google.com/" alt="hi" class="partner" style="background-image: url(/nike.jpg);">
+        <a href="http://google.com/" alt="hi" class="partner" style="background-image: url(/images/nike.jpg);">
 
         </a>
-        <div class="partner" style="background-image: url(/xiaomi.png);">
+        <div class="partner" style="background-image: url(/images/xiaomi.png);">
         </div>
-        <div class="partner" style="background-image: url(/apple.png);">
+        <div class="partner" style="background-image: url(/images/apple.png);">
         </div>
-        <div class="partner" style="background-image: url(/ps4.jpg);">
+        <div class="partner" style="background-image: url(/images/ps4.jpg);">
         </div>
-        <div class="partner" style="background-image: url(/guitar.jpg);">
+        <div class="partner" style="background-image: url(/images/guitar.jpg);">
         </div>
-        <div class="partner" style="background-image: url(/dress.jpeg);">
+        <div class="partner" style="background-image: url(/images/dress.jpeg);">
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <div class="nav-toggle-button" id="nav-toggle-button"><i class="fas fa-bars"></i></div>
+    <div class="nav-toggle-button" id="nav-toggle-button" onclick="openSideBarMenu(event)">
+        <i class="fas fa-bars"></i>
     </div>
 </template>
 

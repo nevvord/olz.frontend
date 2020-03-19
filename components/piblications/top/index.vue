@@ -7,7 +7,7 @@
         <div class="publication  bs-green p-05 border border-color-green border-radius">
           <div class="publication-head">
             <!-- Картинка, цена, количество изображений -->
-            <img class="w-100" src="/dress.jpeg" alt="dress">
+            <img class="w-100" src="/images/dress.jpeg" alt="dress">
             <div class="images p-05 bg-blue color-white border-radius"><i class="far fa-image"></i><span class="
             quantity pl-05">3</span></div>
             <div class="cost bg-orange p-05 border-radius color-white"> 150grn</div>
@@ -34,7 +34,7 @@
         <div class="publication bs-green p-05 border border-color-green border-radius">
           <div class="publication-head">
             <!-- Картинка, цена, количество изображений -->
-            <img class="w-100" src="/dress.jpeg" alt="dress">
+            <img class="w-100" src="/images/dress.jpeg" alt="dress">
             <div class="images p-05 bg-blue color-white border-radius"><i class="far fa-image"></i><span class="
             quantity pl-05">3</span></div>
             <div class="cost bg-orange p-05 border-radius color-white"> 150grn</div>
@@ -61,7 +61,7 @@
         <div class="publication bs-green p-05 border border-color-green border-radius">
           <div class="publication-head">
             <!-- Картинка, цена, количество изображений -->
-            <img class="w-100" src="/dress.jpeg" alt="dress">
+            <img class="w-100" src="/images/dress.jpeg" alt="dress">
             <div class="images p-05 bg-blue color-white border-radius"><i class="far fa-image"></i><span class="
             quantity pl-05">3</span></div>
             <div class="cost bg-orange p-05 border-radius color-white"> 150grn</div>
@@ -88,7 +88,7 @@
         <div class="publication bs-green p-05 border border-color-green border-radius">
           <div class="publication-head">
             <!-- Картинка, цена, количество изображений -->
-            <img class="w-100" src="/dress.jpeg" alt="dress">
+            <img class="w-100" src="/images/dress.jpeg" alt="dress">
             <div class="images p-05 bg-blue color-white border-radius"><i class="far fa-image"></i><span class="
             quantity pl-05">3</span></div>
             <div class="cost bg-orange p-05 border-radius color-white"> 150grn</div>

@@ -28,14 +28,15 @@ export default {
   */
   css: [
     '~/assets/scss/main.scss',
-    '~/assets/scss/nevvi.scss',
-    '~/assets/scss/value.scss'
+    // '~/assets/scss/nevvi.scss',
+    // '~/assets/scss/value.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-notifications.js', ssr: false }
+    { src: '~/plugins/vue-notifications.js', ssr: false },
+    { src: '~/plugins/axiosHeaderAndCheckAuth.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules

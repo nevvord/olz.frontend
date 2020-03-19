@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="nav-content">
     <SideBarMenu />
     <nav>
-        <ButtonOpenSideBarMenu hidden/>
+        <ButtonOpenSideBarMenu/>
         <Logo />
         <Links />
         <Search />
