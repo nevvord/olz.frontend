@@ -10,23 +10,23 @@
                     </div>
                 </div>
                 <div class="modal-body-content">
-                    <Social hidden/>
                     <Phrases />
+                    <Social />
                     <div class="signin mt-1" v-show="mode === 'signin'">
                         <div class="inputs text-center">
                             <form @submit.prevent="signin()">
-                                <input class="m-0auto mb-1" type="email" placeholder="Электронный адрес" required>
-                                <input class="m-0auto mb-1" type="password" placeholder="Пароль" required>
-                                <button type="submit m-0auto dislpay-block" class="mb-1">Вход</button>
+                                <input v-model="form.signin.email" class="m-0auto mb-1" type="email" name="email" placeholder="Электронный адрес" required>
+                                <input v-model="form.signin.password" class="m-0auto mb-1" type="password" name="password" placeholder="Пароль" required>
+                                <button type="submit" class="mb-1">Вход</button>
                             </form>
                         </div>
                     </div>
-                    <div class="signup" v-show="mode === 'signup'">
+                    <div class="signup mt-1" v-show="mode === 'signup'">
                         <div class="inputs text-center">
                             <form @submit.prevent="signup()">
-                                <input class="m-0auto mb-1" type="email" placeholder="Электронный адрес" required>
-                                <input class="m-0auto mb-1" type="password" placeholder="Пароль" required>
-                                <input class="m-0auto mb-1" type="text" placeholder="Имя пользователя" required>
+                                <input v-model="form.signup.email" class="m-0auto mb-1" type="email" name="email" placeholder="Электронный адрес" required>
+                                <input v-model="form.signup.password" class="m-0auto mb-1" type="password" name="password" placeholder="Пароль" required>
+                                <input v-model="form.signup.name" class="m-0auto mb-1" type="text" name="fullName" placeholder="Имя пользователя" required>
                                 <button type="submit m-0auto display-block" class="mb-1">Регистрация</button>
                             </form>
                         </div>
@@ -41,42 +41,86 @@
 import Social from './Social'
 import Phrases from './Phrases'
 
-    export default {
-        components: {
-            Social,
-            Phrases
+export default {
+  components: {
+    Social,
+    Phrases
+  },
+  props: ['toggleModalAuth'],
+  data() {
+    return {
+      mode: 'signin',
+      form: {
+        signin: {
+          email: '',
+          password: ''
         },
-        props: ['toggleModalAuth'],
-        data(){return{
-            mode: 'signin',
-            form: {
-                signin: {
-                    email: '',
-                    password: ''
-                },
-                signup: {
-                    email: '',
-                    password: '',
-                    name: ''
-                }
-            },
-            
-        }},
-        methods: {
-            signin() {
-                this.$notify({
-                  group: 'foo',
-                  text: 'login',
-                  type: 'success'
-                })
-                
-            },
-            changeMode() {
-                if (this.mode === 'signin') return this.mode = 'signup'
-                this.mode = 'signin' 
-            }
+        signup: {
+          email: '',
+          password: '',
+          name: ''
         }
+      },
+
     }
+  },
+  methods: {
+    signin() {
+      this.$auth.loginWith('local', {
+          data: {
+            "email": this.form.signin.email,
+            "password": this.form.signin.password
+          }})
+          .then(response => {
+            this.signin = {
+              email: '',
+              password: ''
+            }
+            this.toggleModalAuth()
+            this.$notify({
+              group: 'foo',
+              text: "Добро пожаловать",
+              type: 'success'
+            })
+          })
+          .catch(error => {
+            this.$notify({
+              group: 'foo',
+              text: error.response.data.msg,
+              type: 'warn'
+            })
+          })
+    },
+    signup(){
+      const sendBody = {...this.form.signup}
+      this.$axios.post('/auth/registration', sendBody)
+          .then(response => {
+            this.signup = {
+              email: '',
+              password: '',
+              name: ''
+            }
+            this.toggleModalAuth()
+            this.$notify({
+              group: 'foo',
+              text: response.data.msg,
+              type: 'success'
+            })
+          })
+          .catch(error => {
+            this.$notify({
+              group: 'foo',
+              text: error.response.data.msg,
+              type: 'warn'
+            })
+          })
+    },
+    changeMode() {
+      if (this.mode === 'signin') return this.mode = 'signup'
+      this.mode = 'signin'
+    }
+  }
+}
 </script>
 
 <style lang="scss">@import "~/assets/scss/value.scss";
@@ -113,6 +157,7 @@ $width-input: 70%;
 
       .social {
         .bnt {
+          cursor: pointer;
           &:first-child {
             margin-left: auto;
           }

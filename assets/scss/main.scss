@@ -164,6 +164,11 @@ nav {
     }
 
     .user-name {
+        max-width: 8rem;
+        white-space: nowrap; /* Запрещаем перенос строк */
+        overflow: hidden; /* Обрезаем все, что не помещается в область */
+        text-overflow: ellipsis;
+        // max-height: 1rem;
         padding: .5rem;
         color: rgb(219, 219, 219);
     }
@@ -384,7 +389,7 @@ nav {
                         border-radius: 100%;
                         width: 2rem;
                         height: 2rem;
-                        background-image: url('/src/Free\ Personas\ Icons\ Vector.svg');
+                        background-image: url('/images/bg-avatars.svg');
                         background-size: 400%;
                         background-position-x: -2px;
                         background-position-y: -9px;
