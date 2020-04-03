@@ -6,3 +6,7 @@ export const state = () => ({
 export const mutations = {
     
 }
+
+export const getters = {
+    getAvatar: state => state.user.avatar
+}

@@ -16,6 +16,7 @@ export default {
     ],
     script: [
       {src: '/scripts/ToggleHiddenMenu.js', body: true},
+      {src: '/scripts/nevvi.js', body: true},
       { src: "https://kit.fontawesome.com/b194ce6fcf.js", body: true }
     ]
   },
@@ -23,8 +24,7 @@ export default {
   ** Customize the progress-bar color
   */
   loading: { 
-    // name: 'chasing-dots',
-    color: '#364c9f',
+    color: '#8BC34A',
     background: 'white',
     height: '4px' 
   },
@@ -33,16 +33,12 @@ export default {
   */
   css: [
     '~/assets/scss/main.scss',
-    // '~/assets/scss/nevvi.scss',
-    // '~/assets/scss/value.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     { src: '~/plugins/vue-notifications.js', ssr: false },
-    // { src: '~/plugins/axiosHeaderAndCheckAuth.js', ssr: false },
-    // {src: '~/plugins/fb.js', ssr: false},
   ],
   /*
   ** Nuxt.js dev-modules

@@ -37,8 +37,9 @@ export default {
         fbID: this.$auth.user.id
       }
       this.$axios.post('/auth/fb', body)
-          .then(response => {
-            this.$store.state.user = response.data.user
+          .then(({data}) => {
+            this.$auth.setUser(data.user)
+            this.$store.state.user = data.user
           })
           .catch(error => {
             if(error.response && error.response.status === 404) {
@@ -62,16 +63,17 @@ export default {
   overflow-y: auto;
   overflow-x: none;
   padding-top: $sizing;
+  
+  &::-webkit-scrollbar {
+    width: 4px;
+    background-color: #f1f1f1;
+  }
+  &::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 6px #00000030;
+  }
+  &::-webkit-scrollbar-thumb {
+    background-color: map-get($map: $colors, $key: blue);
+  }
 }
 
-#content-body::-webkit-scrollbar {
-  width: 4px;
-  background-color: #f1f1f1;
-}
-#content-body::-webkit-scrollbar-track {
-  box-shadow: inset 0 0 6px #00000030;
-}
-#content-body::-webkit-scrollbar-thumb {
-  background-color: map-get($map: $colors, $key: blue);
-}
 </style>

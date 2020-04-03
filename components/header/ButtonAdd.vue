@@ -1,5 +1,5 @@
 <template>
-  <nuxt-link :to="this.$store.state.auth ? '/addpublication' : '/'" @click="toggleModalAuth" class="nav-item-add" >
+  <nuxt-link @click.native="checkAuth" :to="this.$store.state.auth.loggedIn ? '/addpublication' : '/'" @click="toggleModalAuth" class="nav-item-add" >
     <div class="bg-left"></div>
     <div class="bg-right"></div>
     <div class="nav-item-add-text">
@@ -13,10 +13,16 @@
     props: ['toggleModalAuth'],
     methods: {
       checkAuth() {
-        if(!this.$store.state.auth) this.toggleModalAuth()
+        if (!this.$store.state.auth.loggedIn) {
+          this.toggleModalAuth()
+          this.$notify({
+            group: 'foo',
+            text: `Войдите в личный кабинет для продолжения`,
+            type: 'warn'
+          })
+        }
       }
     }
-      
   }
 </script>
 

@@ -46,15 +46,14 @@ export default {
         .then(response => {
           this.$notify({
             group: 'foo',
-            text: response,
+            text: "Авторизация успешна",
             type: 'success'
           })
-          console.log(response);
         })
         .catch(error => {
           this.$notify({
             group: 'foo',
-            text: error,
+            text: "Авторизация неуспешна",
             type: 'warn'
           })
         })

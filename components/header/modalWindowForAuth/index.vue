@@ -1,40 +1,50 @@
 <template>
-    <div>
-        <div class="modal">
-            <div class="modal-bg" @click="toggleModalAuth()"></div>
-            <div class="modal-body">
-                <div class="modal-body-title">
-                    <div class="modal-body-title-auth-btn border-b border-color-light">
-                        <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signin'}" @click="changeMode()">Вход</div>
-                        <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signup'}" @click="changeMode()">Регистрация</div>
-                    </div>
-                </div>
-                <div class="modal-body-content">
-                    <Phrases />
-                    <Social />
-                    <div class="signin mt-1" v-show="mode === 'signin'">
-                        <div class="inputs text-center">
-                            <form @submit.prevent="signin()">
-                                <input v-model="form.signin.email" class="m-0auto mb-1" type="email" name="email" placeholder="Электронный адрес" required>
-                                <input v-model="form.signin.password" class="m-0auto mb-1" type="password" name="password" placeholder="Пароль" required>
-                                <button type="submit" class="mb-1">Вход</button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="signup mt-1" v-show="mode === 'signup'">
-                        <div class="inputs text-center">
-                            <form @submit.prevent="signup()">
-                                <input v-model="form.signup.email" class="m-0auto mb-1" type="email" name="email" placeholder="Электронный адрес" required>
-                                <input v-model="form.signup.password" class="m-0auto mb-1" type="password" name="password" placeholder="Пароль" required>
-                                <input v-model="form.signup.name" class="m-0auto mb-1" type="text" name="fullName" placeholder="Имя пользователя" required>
-                                <button type="submit m-0auto display-block" class="mb-1">Регистрация</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+  <div>
+    <div class="modal">
+      <div class="modal-bg" @click="toggleModalAuth()"></div>
+      <div class="modal-body">
+      
+        <div class="modal-body-title">
+          <div class="modal-body-title-auth-btn border-b border-color-light">
+            <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signin'}" @click="changeMode()">
+              Вход
             </div>
+            <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signup'}" @click="changeMode()">
+              Регистрация
+            </div>
+          </div>
         </div>
+        <div class="modal-body-content">
+          <Phrases />
+          <Social />
+          <div class="signin mt-1" v-show="mode === 'signin'">
+            <div class="inputs text-center">
+              <form @submit.prevent="signin()">
+                <input v-model="form.signin.email" class="m-0auto mb-1" type="email" name="email"
+                  placeholder="Электронный адрес" required>
+                <input v-model="form.signin.password" class="m-0auto mb-1" type="password" name="password"
+                  placeholder="Пароль" required>
+                <button type="submit" class="mb-1">Вход</button>
+              </form>
+            </div>
+          </div>
+          <div class="signup mt-1" v-show="mode === 'signup'">
+            <div class="inputs text-center">
+              <form @submit.prevent="signup()">
+                <input v-model="form.signup.email" class="m-0auto mb-1" type="email" name="email"
+                  placeholder="Электронный адрес" required>
+                <input v-model="form.signup.password" class="m-0auto mb-1" type="password" name="password"
+                  placeholder="Пароль" required>
+                <input v-model="form.signup.name" class="m-0auto mb-1" type="text" name="fullName"
+                  placeholder="Имя пользователя" required>
+                <button type="submit m-0auto display-block" class="mb-1">Регистрация</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>

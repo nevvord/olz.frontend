@@ -7,8 +7,8 @@
       <div class="ml-1">
         <div id="profile" v-if="$auth.loggedIn">
           <div class="profile" @click="TogglerMenu">
-            <div class="avatar" v-if="!$auth.user.avatar && !$store.state.user.avatar"></div>
-            <img class="avatar" v-else-if="$store.state.user.avatar" :src="$store.state.user.avatar" :alt="$auth.user.name">
+            <div class="avatar" v-if="!$auth.user.avatar && !$auth.user.avatar"></div>
+            <img class="avatar" v-else-if="$auth.user.avatar" :src="$auth.user.avatar" :alt="$auth.user.name">
             <img class="avatar" v-else-if="$auth.user.avatar" :src="$auth.user.avatar" :alt="$auth.user.name">
             <div class="user-name" v-if="$auth.user.name">{{$auth.user.name}}</div><i class="py-05 color-light fas fa-caret-down"></i> 
           </div>
