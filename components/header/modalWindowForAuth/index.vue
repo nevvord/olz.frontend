@@ -41,42 +41,42 @@
 import Social from './Social'
 import Phrases from './Phrases'
 
-    export default {
-        components: {
-            Social,
-            Phrases
-        },
-        props: ['toggleModalAuth'],
-        data(){return{
-            mode: 'signin',
-            form: {
-                signin: {
-                    email: '',
-                    password: ''
-                },
-                signup: {
-                    email: '',
-                    password: '',
-                    name: ''
-                }
-            },
-            
-        }},
-        methods: {
-            signin() {
-                this.$notify({
-                  group: 'foo',
-                  text: 'login',
-                  type: 'success'
-                })
-                
-            },
-            changeMode() {
-                if (this.mode === 'signin') return this.mode = 'signup'
-                this.mode = 'signin' 
-            }
-        }
+export default {
+  components: {
+    Social,
+    Phrases
+  },
+  props: ['toggleModalAuth'],
+  data: () => ({
+    mode: 'signin',
+    form: {
+      signin: {
+        email: '',
+        password: ''
+      },
+      signup: {
+        email: '',
+        password: '',
+        name: ''
+      }
+    },
+
+  }),
+  methods: {
+    signin() {
+      this.$notify({
+        group: 'foo',
+        text: 'login',
+        type: 'success'
+      })
+
+    },
+    changeMode() {
+      if (this.mode === 'signin') return this.mode = 'signup'
+      this.mode = 'signin'
     }
+  }
+}
 </script>
 
 <style lang="scss">@import "~/assets/scss/value.scss";

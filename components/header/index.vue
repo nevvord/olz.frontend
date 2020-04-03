@@ -25,7 +25,7 @@ import Logo from './Logo'
 import Links from './Links'
 import Search from './Search'
 import ButtonAdd from './ButtonAdd'
-import Profile from './Profile/'
+import Profile from './profile/'
 import SmallLoginBtn from './SmallLoginBtn'
 import ModalWindowForAuth from './modalWindowForAuth/'
 
