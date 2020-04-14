@@ -16,27 +16,29 @@ export default {
     ],
     script: [
       {src: '/scripts/ToggleHiddenMenu.js', body: true},
+      {src: '/scripts/nevvi.js', body: true},
       { src: "https://kit.fontawesome.com/b194ce6fcf.js", body: true }
     ]
   },
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { 
+    color: '#8BC34A',
+    background: 'white',
+    height: '4px' 
+  },
   /*
   ** Global CSS
   */
   css: [
     '~/assets/scss/main.scss',
-    // '~/assets/scss/nevvi.scss',
-    // '~/assets/scss/value.scss'
   ],
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
     { src: '~/plugins/vue-notifications.js', ssr: false },
-    { src: '~/plugins/axiosHeaderAndCheckAuth.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -48,13 +50,39 @@ export default {
   */
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/auth',
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    baseURL: 'http://localhost:3013'
+  },
+  auth: {
+    // cookie: false,
+    strategies: {
+      local: {
+        endpoints: {
+          login: {url: '/auth/login', method: 'post', propertyName: 'token' },
+          logout: '/',
+          user: {url: '/auth/user', method: 'get', propertyName: 'user'},
+        },
+        tokenRequired: true,
+        tokenType: 'Bearer'
+      },
+      facebook: {
+        client_id: '661486947949676',
+        userinfo_endpoint: 'https://graph.facebook.com/v2.12/me?fields=about,name,picture{url},email',
+        scope: ['public_profile', 'email'],
+      },
+      google: {
+        client_id: '369032606446-ravdneekf8m2bpeie8nnsd34tbit5j35.apps.googleusercontent.com',
+      },
+    },
+    redirect: {
+    }
   },
   /*
   ** Build configuration

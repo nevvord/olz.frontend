@@ -10,6 +10,10 @@
     margin: 0 auto;
 }
 
+.bold {
+    font-weight: 700;
+}
+
 
 
 
@@ -89,11 +93,23 @@ $padding in $paddings {
     .bg-#{$name} {
         background-color: $color;
     }
+    .border-#{$name} {
+        border-color: $color;
+    }
+    .bs-#{$name} {
+        box-shadow: 0 0 4px rgba($color, .4);
+    }
+    
 }
 @each $name, $width in $width {
     .w-#{$name} {
         width: $width;
     }
+}
+
+.grid-2 {
+    display: grid;
+    grid-template-columns: auto 1fr;
 }
 
 .border {
@@ -111,9 +127,10 @@ $padding in $paddings {
     border-radius: 4px;
 }
 
-.bs-green{
-    box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: green), .6 );
+.border-circle {
+    border-radius: 100%;
 }
+
 .box-shadow{
     box-shadow: 0 0 4px rgba(  map-get($map: $colors, $key: black), .6 );
 }
@@ -184,4 +201,8 @@ button {
 
 .font-cursive {
     font-family: cursive;
+}
+
+.cursor-pointer{
+    cursor: pointer;
 }

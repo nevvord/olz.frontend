@@ -18,6 +18,9 @@ export default {
     AddCircle,
     PublicationsTop,
     PublicationsAll
+  },
+  head: {
+    title: 'OLZ'
   }
 }
 </script>
