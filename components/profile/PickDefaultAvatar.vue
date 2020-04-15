@@ -1,5 +1,5 @@
 <template lang="pug">
-.bs-black.p-05.border-radius
+.bs.p-05.border-radius
   div Вы можете выбрать готовую аватарку:
   .avatars-palitra.text-center
     .h116(v-for="(avatar, index) in avatars" :key="index" @click="pick(index)")

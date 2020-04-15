@@ -1,4 +1,4 @@
-$paddings: (
+$sizing: (
     '03': .3rem,
     '05': .5rem,
     1: 1rem,
@@ -8,6 +8,7 @@ $paddings: (
 );
 
 $colors: (
+    dark: rgb(12, 12, 17),
     black: #000,
     blue: #364c9f,
     blue-1: #2a3e88,
@@ -17,6 +18,7 @@ $colors: (
     light-05: #f1f1f4,
     light-1: #c1c1c1,
     light-2: #8a8a8a,
+    gray: #333,
     white: #fff,
     orange: orange,
     warning: rgb(255, 208, 55)
@@ -27,4 +29,4 @@ $width: (
     50: 50%
 );
 
-$border: 1px solid;
+$border: 1px solid #000;

@@ -1,6 +1,4 @@
 @import "nevvi.scss";
-
-
 a {
     color: map-get($colors, blue);
     .router-link-active {
@@ -34,8 +32,6 @@ body {
             top: -.3rem;
         }
         
-    }
-    input {
     }
 }
 
@@ -88,7 +84,7 @@ nav {
 
         .nav-item {
             text-align: center;
-            padding: .3rem .5rem;
+            padding: .5rem .5rem;
             margin: auto 0;
             color: rgb(228, 228, 228);
             cursor: pointer;

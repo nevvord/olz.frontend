@@ -1,7 +1,7 @@
 <template lang="pug">
   .links.color-black
-    .bs-black.p-05.border-radius.bg-white
-      nuxt-link.display-block.p-03(to="/profile/edit")
+    .bs.p-05.border-radius.bg-white
+      nuxt-link.display-block.p-03(to="/profile/edit" exact-active-class="profileLinkActive")
         i.fas.fa-pen.width-icon
         span.ml-03.ml-03 Редактировать
 
@@ -39,7 +39,14 @@
 <style lang="scss" scoped>
 .links a:hover {
   background-color: #0000ff10;
+  color: #364c9f;
   border-radius: 6px;
+}
+
+.profileLinkActive {
+  background-color: #364c9f;
+  border-radius: 6px;
+  color: white;
 }
 
 .width-icon {

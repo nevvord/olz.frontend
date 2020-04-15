@@ -1,5 +1,5 @@
 <template lang="pug">
-    .avatar( :style="bgUrl")
+    .avatar.bs( :style="bgUrl")
     //- .bg(v-else)
 </template>
 
@@ -53,6 +53,5 @@ export default {
   background-image: url('/images/bg-avatars.svg');
   background-size: 400%;
   background-position: -15px -60px;
-  box-shadow: 0 0 4px #00000040;
 }
 </style>

@@ -5,6 +5,7 @@
       <Header />
       <div id="content-body">
         <nuxt />
+        <Footer />
       </div>
     </div>
     <notifications group="foo" position="bottom right" />
@@ -13,10 +14,12 @@
 
 <script>
 import Header from '~/components/header'
+import Footer from '~/components/footer'
 import ModalFbPassword from '~/components/registerFbPasword'
 export default {
   components: {
     Header,
+    Footer,
     ModalFbPassword
   },
   data: () => ({
