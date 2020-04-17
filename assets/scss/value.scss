@@ -4,10 +4,15 @@ $sizing: (
     1: 1rem,
     15: 1.5rem,
     2: 2rem,
-    4: 4rem
+    4: 4rem,
+    none: 0
 );
 
 $colors: (
+    main-1: #364c9f, 
+    main-2: #8BC34A, 
+    main-3: #364c9f,
+    success: rgb(112, 255, 83),
     dark: rgb(12, 12, 17),
     black: #000,
     blue: #364c9f,

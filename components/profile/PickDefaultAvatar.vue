@@ -1,12 +1,13 @@
 <template lang="pug">
 .bs.p-05.border-radius
   div Вы можете выбрать готовую аватарку:
-  .avatars-palitra.text-center
-    .h116(v-for="(avatar, index) in avatars" :key="index" @click="pick(index)")
-      .picked(v-if="picked === index")
-        i.fas.fa-check
-      AvatarViewer.m-05.cursor-pointer( :img="'http://localhost:3013/images/avatars/'+ avatar" :size="'100px'")
-      br(v-if="index === 6")
+  .container.avatars-palitra
+    .row
+      .avka.col-2(v-for="(avatar, index) in avatars" :key="index" @click="pick(index)")
+        .picked(v-if="picked === index")
+          i.fas.fa-check
+        AvatarViewer.m-05.cursor-pointer( :img="'http://localhost:3013/images/avatars/'+ avatar" :size="'100px'")
+        br(v-if="index === 6")
 </template>
 
 <script>
@@ -23,12 +24,12 @@ export default {
   methods: {
     pick(index) {
       this.picked = index
-      const img = event.target.closest('.h116').querySelector('.avatar').style.backgroundImage.split('"')[1]
+      const img = event.target.closest('.avka').querySelector('.avatar').style.backgroundImage.split('"')[1]
       this.avatarDefaultPicker(img)
     }
   },
-  beforeCreate() {
-    this.$axios.get('/user/get/defaultavatars')
+  async beforeCreate() {
+    await this.$axios.get('/user/get/defaultavatars')
         .then(({data}) => {
           this.avatars = data.avatars
         })

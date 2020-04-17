@@ -60,12 +60,12 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/value.scss';
 #content-body {
-  $sizing: 50px;
-  height: calc(100vh - 50px);
+  $sizing: 47px;
+  height: calc(100vh - 47px);
   width: 100%;
   overflow-y: auto;
-  overflow-x: none;
-  padding-top: $sizing;
+  overflow-x: hidden;
+  margin-top: $sizing;
   
   &::-webkit-scrollbar {
     width: 4px;

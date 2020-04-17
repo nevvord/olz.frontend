@@ -1,5 +1,5 @@
 <template lang="pug">
-    .avatar.bs( :style="bgUrl")
+    .avatar( :style="bgUrl")
     //- .bg(v-else)
 </template>
 
@@ -14,9 +14,9 @@ export default {
       const image = new Image()
       image.onload = () => {
         if (image.width > image.height) {
-          this.bgUrl = `background-image: url(${this.img}); background-size: auto ${this.size}; width: ${this.size}; height: ${this.size};`
+          this.bgUrl = `background-image: url(${this.img}); background-size: auto ${this.size}; max-width: ${this.size}; min-width: ${this.size}; max-height: ${this.size}; min-height: ${this.size};`
         } else {
-          this.bgUrl = `background-image: url(${this.img}); background-size: ${this.size} auto; width: ${this.size}; height: ${this.size};`
+          this.bgUrl = `background-image: url(${this.img}); background-size: ${this.size} auto; max-width: ${this.size}; min-width: ${this.size}; max-height: ${this.size}; min-height: ${this.size};`
         }
       }
       image.src = this.img
@@ -28,9 +28,9 @@ export default {
         const image = new Image()
         image.onload = () => {
           if (image.width > image.height) {
-            this.bgUrl = `background-image: url(${newVal}); background-size: auto ${this.size}; width: ${this.size}; height: ${this.size};`
+            this.bgUrl = `background-image: url(${newVal}); background-size: auto ${this.size}; max-width: ${this.size}; min-width: ${this.size}; max-height: ${this.size}; min-height: ${this.size};`
           } else {
-            this.bgUrl = `background-image: url(${newVal}); background-size: ${this.size} auto; width: ${this.size}; height: ${this.size};`
+            this.bgUrl = `background-image: url(${newVal}); background-size: ${this.size} auto; max-width: ${this.size}; min-width: ${this.size}; max-height: ${this.size}; min-height: ${this.size};`
           }
         }
         image.src = newVal

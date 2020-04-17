@@ -39,6 +39,7 @@ export default {
   */
   plugins: [
     { src: '~/plugins/vue-notifications.js', ssr: false },
+    { src: '~/plugins/filters.js', ssr: false },
   ],
   /*
   ** Nuxt.js dev-modules

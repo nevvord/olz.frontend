@@ -5,7 +5,7 @@
       <div class="modal-body">
       
         <div class="modal-body-title">
-          <div class="modal-body-title-auth-btn border-b border-color-light">
+          <div class="modal-body-title-auth-btn border-b border-light">
             <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signin'}" @click="changeMode()">
               Вход
             </div>

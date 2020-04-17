@@ -19,5 +19,14 @@
 </script>
 
 <style lang="scss" scoped>
-
+#nav-toggle-menu {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    margin-top: 52px;
+    transition: 1s cubic-bezier(0.34, 0.63, 0.19, 0.99);
+    z-index: 2000;
+}
 </style>

@@ -1,11 +1,9 @@
-<template>
-  <div class="hidden-block">
-    <div class="nav-items m-0auto">
-      <div class="nav-item">Тарифы</div>
-      <div class="nav-item">Помощь</div>
-      <div class="nav-item">Контакты</div>
-    </div>
-  </div>
+<template lang="pug">
+div
+  .display-flex.pt-03
+    nuxt-link.color-white.display-block.p-03(to="/info/tarif") Тарифы
+    nuxt-link.color-white.display-block.p-03(to="/info/help") Помощь
+    nuxt-link.color-white.display-block.p-03(to="/info/conk") Контакты
 </template>
 
 <script>

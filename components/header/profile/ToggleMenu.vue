@@ -11,13 +11,23 @@
 
 <script>
     export default {
-        props: ['TogglerMenu'],
+        props: ['TogglerMenu', 'ToggleMenuVariable'],
         methods: {
             logout(){
                 this.$auth.logout()
                 this.TogglerMenu()
                 localStorage.setItem('auth.strategy', 'local')
             }
+        },
+        mounted() {
+            document.addEventListener('click', (event) => {
+                const noClick = event.target.closest('.toggleMenu')
+                if (this.ToggleMenuVariable) {
+                    if (noClick === null) {
+                        this.TogglerMenu()
+                    }
+                }
+            })
         }
     }
 </script>

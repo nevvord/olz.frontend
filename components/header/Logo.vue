@@ -1,9 +1,16 @@
-<template>
-    <div class="m-0auto">
-        <nuxt-link to="/" class="nav-logo m-0auto">
-            <div>O</div>
-            <div class="nav-logo-green">L</div>
-            <div>Z</div>
-        </nuxt-link>
-    </div>
+<template lang="pug">
+div
+  nuxt-link.display-flex.fs-15.pt-03(to="/")
+    .color-white O
+    .color-main-2.transformed L
+    .color-white Z
 </template>
+
+<style lang="scss" scoped>
+.transformed{
+  transition: .3s;
+}
+.transform:hover .transformed {
+  transform: scaleX(-1);
+}
+</style>

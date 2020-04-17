@@ -1,15 +1,4 @@
-<template>
-    <div class="nav-toggle-button" id="nav-toggle-button" onclick="openSideBarMenu(event)">
-        <i class="fas fa-bars"></i>
-    </div>
+<template lang="pug">
+.nav-toggle-button.color-white#nav-toggle-button(onclick="openSideBarMenu(event)")
+    i.fas.fa-bars.fs-15
 </template>
-
-<script>
-    export default {
-        
-    }
-</script>
-
-<style lang="scss" scoped>
-
-</style>

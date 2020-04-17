@@ -1,11 +1,7 @@
-<template>
-  <nuxt-link @click.native="checkAuth" :to="this.$store.state.auth.loggedIn ? '/addpublication' : '/'" @click="toggleModalAuth" class="nav-item-add" >
-    <div class="bg-left"></div>
-    <div class="bg-right"></div>
-    <div class="nav-item-add-text">
-      <b>+</b> Подать объявление
-    </div>
-  </nuxt-link>
+<template lang="pug">
+div
+  nuxt-link.display-block(@click.native="checkAuth" :to="this.$store.state.auth.loggedIn ? '/addpublication' : '/'")
+    .color-main-2.py-05.border.border-main-2.text-center.border-radius + Подать обьявление
 </template>
 
 <script>

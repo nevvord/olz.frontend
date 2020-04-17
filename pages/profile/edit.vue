@@ -1,10 +1,10 @@
 <template lang="pug">
-div
-  .container.bold.color-light-2.bg-light.py-1.bs.zindex
+.bg-white
+  .container.bold.color-light-2.py-1.bs.zindex.br-b.bg-light
     .pl-2
       nuxt-link(to="/profile") {{$auth.user.name}}
       span  • Редактор
-  .container.bg-light-05.py-1
+  .container.py-1
     .profile-user
       .profile-user-content
         Links
@@ -15,66 +15,113 @@ div
               i.far.fa-image
               span  Выберете фото
             input#avatar(type="file", name="file" accept=".jpg, .jpeg, .png" @change="filePicked" enctype="multipart/form-data" hidden)
-            .display-block.btn-pick-img.color-blue-1.bs.pos-rel(@click="saveAvatar")
-              //- tooltip(:hidden="!showTooltip" left @click="closeTolltip") Сначала виберете аватар
+            .display-block.btn-pick-img.color-blue-1.bs.pos-rel(@click="save")
               i.far.fa-save
               span  Сохранить
         .ml-2.bg-white
           PickDefaultAvatar(:avatarDefaultPicker="avatarDefaultPicker")
-    .row.py-1
-      .col-4
-        .bs.p-1.border-radius.bg-white.mr-05
-          .pr-1
-            label.display-block.color-gray(for="City") Город
-            input.w-100#City(type="text" v-model="textForm.city" )
-          .pr-1.mt-1
-            label.display-block.color-gray(for="PhoneNum") Номер телефона
-            input.w-100#PhoneNum(type="text" v-model="textForm.phoneNumber" )
-      .col-4
-        .bs.p-1.border-radius.bg-white.mx-05
-          .pr-1
-            label.display-block.color-gray(for="name") Имя
-            input.w-100#name(type="text" v-model="textForm.name" )
-          .pr-1.mt-1
-            label.display-block.color-gray(for="login") Логин
-            input.w-100#login(type="text" v-model="textForm.login" )
-      .col-4
-        .bs.p-1.border-radius.bg-white.ml-05
-          .pr-1
-            label.display-block.color-gray(for="business") Бизнес
-            input.w-100#business(type="text" v-model="textForm.business" )
-          .pr-1.mt-1
-            label.display-block.color-gray(for="sp") Семейное положение
-            select.w-100#sp(type="text" v-model="textForm.sp" )
-              option(value="0" selected) Не указанно
-              option(value="1") Свобода
-              option(value="2") Есть пара
-              option(value="3") Женат замужем
-              option(value="4") Все сложно
-    .row
-      .col-12
-        .bs.p-1.mb-1.border-radius.bg-white
-          .row
-            .col-6
-              .bs.p-1.bg-light
-                .px-1
-                  span.mr-05 Facebook:
-                  input.w-100.dislpay-block(v-model="textForm.social.facebook")
-                .px-1.mt-1
-                  span.mr-05 Instagram:
-                  input.w-100.dislpay-block(v-model="textForm.social.instagram")
-            .col-6
-              .bs.p-1.bg-light.ml-1
-                .pr-1
-                  label(for="dateBirthday") Дата рождения:
-                  input.w-100.dislpay-block#dateBirthday(type="date" v-model="textForm.dateBirthday")
-
-    .row
-      .col-12
-        .bs.p-1.border-radius.bg-white
-          .pr-1
-            label.display-block.color-gray(for="about") О себе
-            textarea.about.w-100#about(type="text" v-model="textForm.about" onkeyup="textAreaAdjust(this)" style="overflow:hidden")
+    .bg-white.p-1.my-1.border-radius.bs
+      .row
+        .col-6
+          .p-1
+            .pr-1
+              label.display-block.color-gray(for="City") Город
+              input.w-100#City(type="text" v-model="textForm.city" )
+            .pr-1.mt-1
+              label.display-block.color-gray(for="PhoneNum") Номер телефона
+              input.w-100#PhoneNum(type="text" v-model="textForm.phoneNumber" )
+        .col-6
+          .bs.p-1.border-radius.ml-1.mr-2.mt-1
+            .row
+              .col.border-b.border-light-2 Соцсети
+            .row
+              i.fab.fa-instagram.fs-2.col.text-center.py-05.cursor-pointer(
+                :class="{'border-b border-blue color-blue bg-blue-01': socialPicked === 0}"
+                @click="changeSocialPick(0)"
+              )
+              i.fab.fa-facebook-square.fs-2.col.text-center.py-05.cursor-pointer(
+                :class="{'border-b border-blue color-blue bg-blue-01': socialPicked === 1}"
+                @click="changeSocialPick(1)"
+              )
+            .p-1
+              .pr-1(v-if="socialPicked === 0")
+                label.display-block.color-gray(for="instagram") Instagram
+                input.w-100#instagram(type="text" v-model="textForm.social.instagram" )
+              .pr-1(v-if="socialPicked === 1")
+                label.display-block.color-gray(for="facebook") Facebook
+                input.w-100#facebook(type="text" v-model="textForm.social.facebook" )
+        .col-6
+          .p-1
+            .pr-1
+              label.display-block.color-gray(for="name") Имя
+              input.w-100#name(type="text" v-model="textForm.name" )
+            .pr-1.mt-1
+              label.display-block.color-gray(for="login") Логин
+              input.w-100#login(type="text" v-model="textForm.login" )
+        .col-6
+          .p-1
+            .pr-1
+              label.display-block.color-gray(for="business") Вид деятильности
+              select.w-100#business(type="text" v-model="textForm.business" )
+                option.fs-1(value="0") Неуказанно
+                option.fs-1(value="1") Частно лицо
+                option.fs-1(value="2") Юридическое лицо
+            .pr-1.mt-1
+              label.display-block.color-gray(for="sp") Семейное положение
+              select.w-100#sp(type="text" v-model="textForm.sp" )
+                option.fs-1(value="0" selected) Не указанно
+                option.fs-1(value="1") Свобода
+                option.fs-1(value="2") Есть пара
+                option.fs-1(value="3") Женат замужем
+                option.fs-1(value="4") Все сложно
+      .row
+        .col-3
+          .p-1.ml-1.bg-light.bs.border-radius
+            label(for="dateBirthday") Дата рождения: 
+              span(v-if="!textForm.newBirthday.day && !textForm.newBirthday.month && !textForm.newBirthday.year") {{textForm.dateBirthday | formatDateNoTime}}
+              span(v-else) {{textForm.newBirthday.year}}-{{textForm.newBirthday.month}}-{{textForm.newBirthday.day}}
+            .row
+              //-Year 
+              .col-4.px-03
+                .window(v-if="openDate === 3")
+                  .bg-light.p-1.border-radius.bs
+                    .text-center.pb-1 {{textForm.newBirthday.year}}
+                    div
+                      .row
+                        .col-3.pl-03.pr-none
+                          .border.border-light-2.border-radius
+                            .border-b.border-light-2.bg-blue-01.text-center.cursor-pointer.hover(@click="firstChange('+')") +
+                            .text-center.py-03.bg-white {{textForm.newBirthday.yearChange.first}}
+                            .border-t.border-light-2.bg-blue-01.text-center.cursor-pointer.hover(@click="firstChange('-')") -
+                        .col-5.p-none
+                          .border.border-light-2.border-radius
+                            .border-b.border-light-2.bg-blue-01.text-center.cursor-pointer.hover(@click="secondChange('+')") +
+                            .text-center.py-03.bg-white {{textForm.newBirthday.yearChange.second}}
+                            .border-t.border-light-2.bg-blue-01.text-center.cursor-pointer.hover(@click="secondChange('-')") -
+                        .col-4.pl-none.pr-03
+                          .border.border-light-2.border-radius
+                            .border-b.border-light-2.bg-blue-01.text-center.cursor-pointer.hover(@click="thirdChange('+')") +
+                            .text-center.py-03.bg-white {{textForm.newBirthday.yearChange.third}}
+                            .border-t.border-light-2.bg-blue-01.text-center.cursor-pointer.hover(@click="thirdChange('-')") -
+                .m-0auto.btn-main-2.mt-05(@click="openDateWindow(3)") Год
+              //- Month
+              .col-4.px-03
+                .window(v-if="openDate === 2")
+                  .row.bg-light.border-radius.bs
+                    .col-3.p-03(v-for=" (index) in 12")
+                      .w-100.p-03.bg-white.bs.text-center.border-radius.cursor-pointer.day(@click="changeMonth(index)") {{index}}
+                .btn-main-1.mt-05.color-white(@click="openDateWindow(2)") Месяц
+              //- Day
+              .col-4.px-03
+                .window(v-if="openDate === 1")
+                  .row.bg-light.border-radius.bs
+                    .col-3.p-03(v-for=" (index) in 31")
+                      .w-100.p-03.bg-white.bs.text-center.border-radius.cursor-pointer.day(@click="changeDay(index)") {{index}}
+                .m-0auto.btn-warning.mt-05(@click="openDateWindow(1)") День
+        .col-9
+            .p-1
+              label.display-block.color-gray(for="about") О себе
+              textarea.about.w-100#about(type="text" v-model="textForm.about" onkeyup="textAreaAdjust(this)" style="overflow:hidden")
 
 
 
@@ -106,12 +153,23 @@ export default {
       sp: this.$store.state.auth.user.sp,
       about: this.$store.state.auth.user.about,
       dateBirthday: this.$store.state.auth.user.dateBirthday,
+      newBirthday: {
+        day: null,
+        month: null,
+        year: null,
+        yearChange: {
+          first: 19,
+          second: 6,
+          third: 0
+        }
+      },
       social: {
         facebook: this.$store.state.auth.user.social.facebook,
         instagram: this.$store.state.auth.user.social.instagram
       }
     },
-    showTooltip: false
+    openDate: 0,
+    socialPicked: 0
   }},
   head() {
     return {
@@ -119,6 +177,61 @@ export default {
     }
   },
   methods: {
+    updateYear(){
+      this.textForm.newBirthday.year = `${this.textForm.newBirthday.yearChange.first}${this.textForm.newBirthday.yearChange.second}${this.textForm.newBirthday.yearChange.third}`
+    },
+    thirdChange(math) {
+      if (math === '+' && this.textForm.newBirthday.yearChange.third <= 8) this.textForm.newBirthday.yearChange.third ++
+      if (math === '-' && this.textForm.newBirthday.yearChange.third >= 1) this.textForm.newBirthday.yearChange.third --
+      this.updateYear()
+    },
+    secondChange(math) {
+      if (math === '+') {
+        if (this.textForm.newBirthday.yearChange.second <=8 && this.textForm.newBirthday.yearChange.first === 19) {
+          this.textForm.newBirthday.yearChange.second ++ 
+        }
+        if (this.textForm.newBirthday.yearChange.second === 0 && this.textForm.newBirthday.yearChange.first === 20) {
+          this.textForm.newBirthday.yearChange.second ++ 
+        }
+      }
+      if (math === '-') {
+        if (this.textForm.newBirthday.yearChange.second >= 7 && this.textForm.newBirthday.yearChange.first === 19) {
+          this.textForm.newBirthday.yearChange.second --
+        }
+        if (this.textForm.newBirthday.yearChange.second === 1 && this.textForm.newBirthday.yearChange.first === 20) {
+          this.textForm.newBirthday.yearChange.second --
+        }
+      }
+      this.updateYear()
+    },
+    firstChange(math) {
+      if (math === '+' && this.textForm.newBirthday.yearChange.first !== 20) {
+        this.textForm.newBirthday.yearChange.first ++ 
+        if ( this.textForm.newBirthday.yearChange.second >= 6) this.textForm.newBirthday.yearChange.second = 0
+      }
+      if (math === '-' && this.textForm.newBirthday.yearChange.first !== 19) {
+        this.textForm.newBirthday.yearChange.first -- 
+        if ( this.textForm.newBirthday.yearChange.second <= 1) this.textForm.newBirthday.yearChange.second = 6
+      }
+      this.updateYear()
+    },
+    openDateWindow(window) {
+      if (window === this.openDate) return this.openDate = 0
+      if (window === 3 && this.openDate !== 3) this.updateYear()
+      // if (window === 3 && this.openDate === 3) this.textForm.newBirthday.year = null
+      this.openDate = window
+    },
+    changeDay(day)  {
+      this.textForm.newBirthday.day = day
+      this.openDateWindow(0)
+    },
+    changeMonth(day)  {
+      this.textForm.newBirthday.month = day
+      this.openDateWindow(0)
+    },
+    changeSocialPick(num) {
+      this.socialPicked = num
+    },
     closeTolltip(event){
       event.cancelBubble = true
       this.showTooltip = false
@@ -138,13 +251,9 @@ export default {
       this.form.pickedAvatar = null
       this.avatar = avatar
     },
-    saveAvatar(){
-      // if (!this.form.avatar && !this.form.pickedAvatar) {
-      //   this.showTooltip = true
-      //   setTimeout(() => {this.showTooltip = false}, 3000)
-      // }
+    async save(){
       if (this.form.avatar && !this.form.pickedAvatar){
-        this.$axios
+        await this.$axios
         .put('/user/profile/change/avatar', {avatar: this.form.avatar})
         .then(({data}) => {
           this.$auth.user.avatar = this.avatar
@@ -165,7 +274,7 @@ export default {
       if(!this.form.avatar && this.form.pickedAvatar){
         const fd = new FormData()
         fd.append('image', this.form.pickedAvatar, this.form.pickedAvatar.name)
-        this.$axios
+        await this.$axios
         .put('/user/profile/change/avatar', fd)
         .then(({data}) => {
           this.$auth.user.avatar = data.avatar
@@ -184,7 +293,12 @@ export default {
           })
         })
       }
-      this.$axios
+      if (this.textForm.newBirthday.day && this.textForm.newBirthday.month && this.textForm.newBirthday.year) {
+        this.textForm.dateBirthday = `${this.textForm.newBirthday.day}-${this.textForm.newBirthday.month}-${this.textForm.newBirthday.year}`
+        console.log(this.textForm.dateBirthday);
+        
+      }
+      await this.$axios
         .put('/user/profile/change/info', {...this.textForm})
         .then(({data}) => {
 
@@ -217,8 +331,23 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.window{
+    position: absolute;
+    bottom: 2rem;
+    min-width: 180px;
+    z-index: 1;
+    .day:hover {
+      background: #d1d1d1;
+    }
+}
+i{
+  &:hover {
+    color: #6a87ff;
+    background: #6a87ff10;
+  }
+}
 .about {
-  height: 1rem;
+  height: 2rem;
 } 
 .zindex {
   position: relative;
@@ -245,6 +374,7 @@ export default {
     box-shadow: 0 0 4px #00000040;
   }
 }
+
 .file-picker{
     display: grid;
     grid-template-columns: 1fr 2fr;

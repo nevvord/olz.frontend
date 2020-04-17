@@ -1,15 +1,14 @@
-<template>
-        <div class="small-login color-white m-0auto">
-            <i class="far fa-user"></i>
-        </div>
+<template lang="pug">
+.color-white.fs-15(v-if="!$auth.user")
+    i.far.fa-user
+AvatarViewer( v-else :img="$auth.user.avatar" :size="'2rem'")
 </template>
 
 <script>
-    export default {
-        
+import AvatarViewer from '~/components/imageComponents/AvatarViewer'
+export default {
+    components: {
+        AvatarViewer
     }
+}
 </script>
-
-<style lang="scss" scoped>
-
-</style>

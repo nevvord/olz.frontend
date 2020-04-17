@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <div class="container bg-light py-1">
+    <div class="bg-light py-1">
+      <div class="container">
         <!-- Категории -->
         <div class="communication">
           <i class="fas fa-anchor my-1"></i>

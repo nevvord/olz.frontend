@@ -15,10 +15,10 @@
             .pt-05.pb-2 {{user.status}}
             .border-b.border-light-1.f-mono Социальные сети
             .fs-2.p-1
-              a.ml-05(v-if="$store.state.auth.user.social.instagram" :href="$store.state.auth.user.social.instagram")
+              a.ml-05(v-if="user.social.instagram" :href="user.social.instagram")
                 i.fab.fa-instagram
               i.fab.fa-instagram.color-light-2(v-else)
-              a.ml-05(v-if="$store.state.auth.user.social.facebook" :href="$store.state.auth.user.social.facebook")
+              a.ml-05(v-if="user.social.facebook" :href="user.social.facebook")
                 i.fab.fa-facebook-square
               i.fab.fa-facebook-square.color-light-2(v-else)
             .border-b.border-light-1.f-mono Иформация пользователя
@@ -34,7 +34,7 @@
                 .col-9.color-blue {{user.city}} 
               .row.mt-1
                 .col-3 День рождения: 
-                .col-9.color-blue {{user.dateBirthday}} 
+                .col-9.color-blue {{user.dateBirthday | formatDateNoTime}} 
               .row.mt-1
                 .col-3 Вид деятельности: 
                 .col-9.color-blue {{user.business}} 
