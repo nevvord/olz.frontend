@@ -1,7 +1,5 @@
-<template>
-    <div>
-        404
-    </div>
+<template lang="pug">
+div Страница 404
 </template>
 
 <script>

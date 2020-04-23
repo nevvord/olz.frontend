@@ -1,6 +1,7 @@
 <template lang="pug">
+div
   no-ssr
-    .avatar( :style="bgUrl")
+    .avatar.br( :style="bgUrl")
     //- .bg(v-else)
 </template>
 
@@ -43,10 +44,8 @@ export default {
 
 <style lang="scss" scoped>
 .avatar {
-  border-radius: 50%;
   background-repeat: no-repeat;
   background-position: center;
-  box-shadow: 0 0 4px #00000080;
 }
 .bg{
   width: 200px; height: 200px;

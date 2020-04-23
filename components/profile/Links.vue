@@ -12,6 +12,10 @@
       nuxt-link.display-block.p-03(to="profile/edit")
         i.fas.fa-user-friends.width-icon
         span.ml-03 Подписки
+
+      nuxt-link.display-block.p-03(to="profile/edit")
+        i.fas.fa-star.width-icon
+        span.ml-03 Подпиcчики
       
       nuxt-link.display-block.p-03(to="profile/edit")
         i.far.fa-comment-alt.width-icon

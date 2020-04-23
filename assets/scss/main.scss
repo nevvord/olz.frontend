@@ -12,28 +12,6 @@ body {
     font-family: "Myriad Pro", Myriad, "Liberation Sans", "Nimbus Sans L", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-// .page-enter-active, .page-leave-active {
-//     transition: opacity .1s;
-// }
-// .page-enter, .page-leave-to {
-//     opacity: .5;
-// }
-
-.form-group {
-    position: relative;
-    label {
-        position: absolute;
-        top: .3rem;
-        left: .3rem;
-        color: map-get($colors, light-2 );
-        font-size: .9rem;
-        transition: .5s;
-        :hover{
-            top: -.3rem;
-        }
-        
-    }
-}
 
 .toggle-menu {
     position: absolute;
@@ -109,7 +87,7 @@ body {
             }
 
             .cat-item-icon {
-                background-color: map-get($map: $colors, $key: green);
+                background-color: map-get($map: $colors, $key: success);
                 color: map-get($map: $colors, $key: white);
                 border-radius: 4px;
                 padding: .2rem .3rem;
@@ -126,15 +104,15 @@ body {
             background-color: #fff;
             width: 100%;
             border-radius: 0 0 6px 6px;
-            border-top: 1px solid map-get($map: $colors, $key: green);
-            border: 1px solid rgba(map-get($map: $colors, $key: green), .2);
+            border-top: 1px solid map-get($map: $colors, $key: success);
+            border: 1px solid rgba(map-get($map: $colors, $key: success), .2);
 
             .cat-item-dropDown-item {
                 padding: .5rem;
 
                 &:hover {
                     background-color: rgba(238, 224, 224, 0.39);
-                    border-right: 2px solid map-get($map: $colors, $key: green);
+                    border-right: 2px solid map-get($map: $colors, $key: success);
                 }
             }
         }

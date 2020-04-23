@@ -48,13 +48,17 @@ export default {
             if(error.response && error.response.status === 404) {
               this.showModal = true
             }
-            
           })
-
-    } 
-    
+    }
+    document,addEventListener('keydown', (event) => {
+      if (event.key === 'p' && event.altKey && !event.ctrlKey) {
+        this.$router.push('/profile')
+      }
+      if (event.key === 'a' && event.altKey && !event.ctrlKey) {
+        this.$router.push('/addpublication')
+      }
+    }) 
   }
-  
 }
 </script>
 <style lang="scss" scoped>

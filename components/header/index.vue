@@ -5,7 +5,7 @@ div
     .container
       .row
         ButtonOpenSideBarMenu.col-2.col-md-1.col-lg-none
-        .col-xl-3
+        .col-8.col-md-2.col-lg-1.col-xl-3
           .row
             Logo.col-8.col-md-2.col-lg-1.col-xl-3
             Links.col-none.col-xl-9

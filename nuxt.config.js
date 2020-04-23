@@ -39,7 +39,8 @@ export default {
   */
   plugins: [
     { src: '~/plugins/vue-notifications.js', ssr: false },
-    { src: '~/plugins/filters.js', ssr: false },
+    { src: '~/plugins/filters.js', ssr: true },
+    { src: '~/plugins/vuelidate.js', ssr: true },
   ],
   /*
   ** Nuxt.js dev-modules
@@ -92,6 +93,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
+    extractCSS: true,
     extend (config, ctx) {
     }
   }

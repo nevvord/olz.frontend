@@ -1,12 +1,12 @@
 <template lang="pug">
 .bs.p-05.border-radius
-  div Вы можете выбрать готовую аватарку:
+  h5.m-none Вы можете выбрать готовую аватарку:
   .container.avatars-palitra
     .row
-      .avka.col-2(v-for="(avatar, index) in avatars" :key="index" @click="pick(index)")
+      .avka.col-6.col-lg-4.col-xl-3(v-for="(avatar, index) in avatars" :key="index" @click="pick(index)")
         .picked(v-if="picked === index")
           i.fas.fa-check
-        AvatarViewer.m-05.cursor-pointer( :img="'http://localhost:3013/images/avatars/'+ avatar" :size="'100px'")
+        AvatarViewer.m-05.cursor-pointer( :img="'http://localhost:3013/images/avatars/'+ avatar" :size="'130px'")
         br(v-if="index === 6")
 </template>
 
@@ -52,9 +52,9 @@ export default {
   font-size: 1.4rem;
   font-weight: 100;
   position: absolute;
-  color: map-get($colors, green );
-  right: .5rem;
-  top: .5rem;
+  color: map-get($colors, success );
+  right: 1.4rem;
+  top: 1.4rem;
   text-shadow: 0 0 4px #000000;
 }
 .avatars-palitra {
