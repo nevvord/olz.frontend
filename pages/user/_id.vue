@@ -7,7 +7,7 @@
       .row
         .col-12.col-md-6.col-xl-3
           div
-            AvatarViewer.m-0auto(:img="user.avatar" :size="'200px'")
+            AvatarViewer.m-0auto(:img="link + user.avatar.link" :size="'200px'")
             .p-1
               button.btn.btn-blue.w-100.color-light Подписатся
         .col-12.col-md-6.col-xl-9
@@ -61,7 +61,8 @@ export default {
     AvatarViewer
   },
   data: () => ({
-    user: null
+    user: null,
+    link: process.env.BASE_URL + '/'
   }),
   beforeCreate() {
     this.$axios

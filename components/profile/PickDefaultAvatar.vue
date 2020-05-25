@@ -6,7 +6,7 @@
       .avka.col-6.col-lg-4.col-xl-3(v-for="(avatar, index) in avatars" :key="index" @click="pick(index)")
         .picked(v-if="picked === index")
           i.fas.fa-check
-        AvatarViewer.m-05.cursor-pointer( :img="'http://localhost:3013/images/avatars/'+ avatar" :size="'130px'")
+        AvatarViewer.m-05.cursor-pointer( :img="link + avatar" :size="'130px'" :data-link="avatar")
         br(v-if="index === 6")
 </template>
 
@@ -19,13 +19,15 @@ export default {
   },
   data: () => ({
     avatars: null,
-    picked: null
+    picked: null,
+    link: process.env.BASE_URL + '/images/avatars/'
   }),
   methods: {
     pick(index) {
       this.picked = index
-      const img = event.target.closest('.avka').querySelector('.avatar').style.backgroundImage.split('"')[1]
-      this.avatarDefaultPicker(img)
+      const currentImage = process.env.BASE_URL + '/images/avatars/' + event.target.closest('.avka').querySelector('.avatar').dataset.link
+      const imageForSave = 'images/avatars/' + event.target.closest('.avka').querySelector('.avatar').dataset.link
+      this.avatarDefaultPicker(currentImage, imageForSave)
     }
   },
   async beforeCreate() {

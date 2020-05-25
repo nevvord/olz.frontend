@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="container bg-light">
-      <div class="partners-title">
+    <div class=" bg-light">
+      <div class="partners-title container">
         Таки есть на что посмотреть
       </div>
     </div>

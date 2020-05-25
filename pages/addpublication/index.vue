@@ -30,25 +30,25 @@ div
               div Название объявления
                 span.color-danger.bold.pl-03 *
               //- Validate
-              .invalid.color-danger.ml-auto(v-if="!$v.title.required") 
+              .invalid.color-danger.ml-auto(v-if="!$v.form.title.required") 
                 small Это поле обязательно для заполнения
-              .invalid.ml-auto(v-if="$v.title.$invalid && title") 
-                .color-danger(v-if="!$v.title.minLength") 
+              .invalid.ml-auto(v-if="$v.form.title.$invalid && form.title") 
+                .color-danger(v-if="!$v.form.title.minLength") 
                   small Минимальня длина названия 20 символов 
-                .color-danger(v-if="!$v.title.maxLength") 
+                .color-danger(v-if="!$v.form.title.maxLength") 
                   small Не более 71 символов
-              .valid.ml-auto(v-if="!$v.title.$invalid && title")
+              .valid.ml-auto(v-if="!$v.form.title.$invalid && form.title")
                 small.color-success.ts Хорошый выбор для названия! 
             input#inputTitle(
-              v-model="title" 
+              v-model="form.title" 
               placeholder="Квартира в центре Одессы"
-              :class="{'border-danger bs-danger': $v.title.$invalid && title, 'border-success bs-success': !$v.title.$invalid && title}"
+              :class="{'border-danger bs-danger': $v.form.title.$invalid && form.title, 'border-success bs-success': !$v.form.title.$invalid && form.title}"
             )
         //- Description
         .col-12.col-xl-12.pt-1
           .form-group
             label(for="inputDescription") Описание
-            textarea#inputDescription(v-model="description" placeholder="Состояние хороше, отлично для отдыха")
+            textarea#inputDescription(v-model="form.description" placeholder="Состояние хороше, отлично для отдыха")
         //- Categories
         .col-12.pt-1
           .color-main-1.pb-03 Категория
@@ -57,11 +57,15 @@ div
             :getCategory="getCategory"
           )
         .col-12.pt-1
-          Schemes(:schema="category")
+          Schemes(:category="form.category" :updateCharacteristics="updateCharacteristics")
+        .price.col-12.pt-1
+          .form-group
+            label(for="inputPrice") Цена
+            input#inputPrice(v-model="form.price" name="price" placeholder="99грн")
         .col-12.pt-1
           .d-flex
             .ml-auto
-              button.btn.btn-success.fs-1.bs Подать объявление
+              button.btn.btn-success.fs-1.bs(@click="addPublication") Подать объявление
 </template>
 <script>
 import { required, minLength, maxLength } from 'vuelidate/lib/validators'
@@ -74,34 +78,48 @@ export default {
     ImageUpload,
     Schemes
   },
-  middleware: 'authenticated',
-  data: () => ({
-    title: null, 
-    description: null,
-    photos: [],
-    category: null
-  }),
+  middleware: ['authenticated', 'categories/getCategories'],
+  data() {return{
+    categories: this.$store.getters['categories/getCategories'],
+    form: {
+      title: null, 
+      description: null,
+      photos: [],
+      category: null,
+      characteristics: null,
+      price: null
+    }
+  }},
   validations: {
-    title: {
-      required,
-      minLength: minLength(20),
-      maxLength: maxLength(71)
+    form: {
+      title: {
+        required,
+        minLength: minLength(20),
+        maxLength: maxLength(71)
+      }
     }
   },
   methods: {
     newPhoto(photo) {
-      this.photos.push(photo)
+      this.form.photos.push(photo)
     },
     removePhoto(index) {
-      this.photos.splice(index, 1)
+      this.form.photos.splice(index, 1)
     },
     upPhotoToMain(index) {
-      const photo = this.photos[index]
-      this.photos.unshift(photo)
-      this.photos.splice(index+1, 1)
+      const photo = this.form.photos[index]
+      this.form.photos.unshift(photo)
+      this.form.photos.splice(index+1, 1)
     },
     getCategory(category) {
-      this.category = category
+      this.form.category = null
+      this.form.category = category
+    },
+    updateCharacteristics(characteristics) {
+      this.form.characteristics = characteristics
+    },
+    addPublication() {
+      console.log(this.form);
     }
   } 
 }

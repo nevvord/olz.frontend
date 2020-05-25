@@ -7,7 +7,7 @@ div
     div
       #profile(v-if="$auth.loggedIn")
         .row.cursor-pointer.toggleMenu(@click="TogglerMenu")
-          AvatarViewer.col-2(:img="$auth.user.avatar" :size="'2rem'")
+          AvatarViewer.col-2(:img="link + $auth.user.avatar.link" :size="'2rem'")
           .col-10.user-name.color-white.py-05.pl-03(v-if="$auth.user.name")
             span.ts {{$auth.user.name}}
               i.fas.fa-caret-down.color-light.pl-03 
@@ -24,7 +24,8 @@ export default {
   },
   props: ['toggleModalAuth'],
   data: () => ({
-    ToggleMenuVariable: false
+    ToggleMenuVariable: false,
+    link: process.env.BASE_URL + '/'
   }),
   methods: {
     TogglerMenu() {

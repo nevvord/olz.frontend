@@ -4,53 +4,24 @@ div
     .title.p-05.pr-1.transition-03(@click="clickCategory")
       .bold.color-main-1 Выбрать категорию {{category}}
     .categories.transition-03(hidden)
-      .category(v-for="(category, index)  in categories" :key="index")
+      .category(v-for="(cat, index)  in categories" :key="index")
         .title.py-05.pl-1.pr-1(@click="open")
           i.fas.fa-caret-down
-          div {{category.title}}
+          div {{cat.titleRu}}
         .subCategories(hidden)
-          .subCategory(v-for="(subCategory, i) in category.subCategories" :key="i")
-            .title.pl-15.pr-1.py-03(@click="pick(subCategory.value, subCategory.title)")
+          .subCategory(v-for="(subCategory, i) in cat.subCategories" :key="i")
+            .title.pl-15.pr-1.py-03(@click="pick(subCategory, subCategory.titleRu)")
               i.fas.fa-icons
-              div {{subCategory.title}}
+              div {{subCategory.titleRu}}
 </template>
 
 <script>
 export default {
   props: ['getCategory'],
-  data: () => ({
+  data() {return{
     category: '',
-    categories: [
-      {
-        title: 'Аренда недвижимости',
-        title2: 'RentalProperty',
-        position: 1,
-        subCategories: [
-          {title: "Квартири", value: 'apartments', icons: ''},
-          {title: "Комнаты", value: 'rooms', icons: ''},
-          {title: "Дома", value: 'houses' , icons: ''},
-          {title: "Загородные дачи", value: 'сountryСottages', icons: ''},
-          {title: "Земельные участки", value: 'lands', icons: ''},
-          {title: "Гаражи", value: 'garages', icons: ''},
-          {title: "Виллы", value: 'villas', icons: ''},
-          {title: "Коттеджи", value: 'Cottages', icons: ''}
-        ]
-      },
-      {
-        title: 'Аренда коммерческой недвижимости',
-        title2: 'CommercialRealEstateForRent',
-        position: 2,
-        subCategories: [
-          {title: "Офисные помещения", value: 'officeRooms', icons: ''},
-          {title: "Промышленные объекты", value: 'industrialFacilities', icons: ''},
-          {title: "Водные объекты", value: 'waterObjects' , icons: ''},
-          {title: "Склады", value: 'warehouses', icons: ''},
-          {title: "Торговые точки", value: 'outlets', icons: ''},
-          {title: "Земельные участки", value: 'commercialLands', icons: ''}
-        ]
-      }
-    ]
-  }),
+    categories: this.$store.getters['categories/getCategories']
+  }},
   methods: {
     open() {
       const subCategory = event.target.closest('.category')

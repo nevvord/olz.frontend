@@ -13,6 +13,7 @@ import AddCircle from '~/components/ads/circle'
 import PublicationsTop from '~/components/piblications/top'
 import PublicationsAll from '~/components/piblications/all'
 export default {
+  middleware: 'categories/getCategories',
   components: {
     Categories,
     AddCircle,

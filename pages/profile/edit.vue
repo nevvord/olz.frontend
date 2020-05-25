@@ -15,7 +15,8 @@ div
       Links.pt-1.col-none.col-xl-2
       .pt-1.col-12.col-md-4.col-xl-3
         .bs.border-radius.py-05
-          AvatarViewer.m-0auto(:img="avatar" :size="'200px'")
+          AvatarViewer.m-0auto(:img="link + avatar" :size="'200px'" v-if="!form.avatar")
+          AvatarViewer.m-0auto(:img="form.avatar" :size="'200px'" v-if="form.avatar")
           .row.px-15.pt-05
             label.btn.btn-light.col-12.text-center.color-blue(for="avatar")
               i.far.fa-image
@@ -143,11 +144,12 @@ export default {
     PickDefaultAvatar
   },
   data() {return{
-    avatar: this.$auth.user.avatar,
+    avatar: this.$auth.user.avatar.link,
     form: {
       avatar: null,
       pickedAvatar: null
     },
+    link: process.env.BASE_URL + '/',
     textForm: {
       city: this.$store.state.auth.user.city,
       phoneNumber: this.$store.state.auth.user.phoneNumber,
@@ -247,24 +249,26 @@ export default {
     filePicked(event) {
       const newAvatar = event.target.files[0]
       this.form.pickedAvatar = newAvatar
-      this.form.avatar = null
-      if ( event.target.files[0] ) return this.avatar = URL.createObjectURL(newAvatar)
+      if ( event.target.files[0] ) {
+        this.form.avatar = URL.createObjectURL(newAvatar)
+        return this.avatar = URL.createObjectURL(newAvatar)
+      }
       this.$notify({
         type: 'error',
         text: 'Error...'
       })
     },
-    avatarDefaultPicker(avatar) {
-      this.form.avatar = avatar
+    avatarDefaultPicker(currentAvatar, avatarForSave) {
+      this.form.avatar = currentAvatar
       this.form.pickedAvatar = null
-      this.avatar = avatar
+      this.avatar = avatarForSave
     },
     async save(){
       if (this.form.avatar && !this.form.pickedAvatar){
         await this.$axios
-        .put('/user/profile/change/avatar', {avatar: this.form.avatar})
+        .put('/user/profile/change/avatar', {avatar: this.avatar})
         .then(({data}) => {
-          this.$auth.user.avatar = this.avatar
+          this.$auth.user.avatar.link = this.avatar
           this.$notify({
             group: 'foo',
             text: data.msg,
@@ -279,13 +283,13 @@ export default {
           })
         })
       }
-      if(!this.form.avatar && this.form.pickedAvatar){
+      if(this.form.pickedAvatar){
         const fd = new FormData()
         fd.append('image', this.form.pickedAvatar, this.form.pickedAvatar.name)
         await this.$axios
         .put('/user/profile/change/avatar', fd)
         .then(({data}) => {
-          this.$auth.user.avatar = data.avatar
+          this.$auth.user.avatar = data.user.avatar
           this.form.pickedAvatar = null
           this.$notify({
             group: 'foo',

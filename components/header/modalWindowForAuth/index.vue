@@ -6,10 +6,10 @@
       
         <div class="modal-body-title">
           <div class="modal-body-title-auth-btn border-b border-light">
-            <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signin'}" @click="changeMode()">
+            <div class="w-100 text-center cp p-05 m-0auto color-blue" :class="{'picked': mode === 'signin'}" @click="changeMode()">
               Вход
             </div>
-            <div class="btn p-05 m-0auto color-blue" :class="{'picked': mode === 'signup'}" @click="changeMode()">
+            <div class="w-100 text-center cp p-05 m-0auto color-blue" :class="{'picked': mode === 'signup'}" @click="changeMode()">
               Регистрация
             </div>
           </div>

@@ -15,7 +15,7 @@ div
       Links.pt-1.col-none.col-xl-2
       .pt-1.col-12.col-md-4.col-xl-3
         .py-05
-          AvatarViewer.m-0auto(:img="$store.state.auth.user.avatar" :size="'200px'")
+          AvatarViewer.m-0auto(:img="link + $store.state.auth.user.avatar.link" :size="'200px'")
       .col-12.col-xl-7.pt-1
         .bg-white.px-1.pt-03.bs.border-radius
           h3.m-none.color-blue {{$auth.user.name}}
@@ -83,9 +83,10 @@ export default {
     AvatarViewer
   },
   data: () => ({
+    link: process.env.BASE_URL + '/'
   }),
   head() {return{
-    title: `${this.$auth.user.name} | OLZ`
+    title: `${this.$auth.user.name} | OLZ`,
   }},
   methods: {
     openMenu() {
