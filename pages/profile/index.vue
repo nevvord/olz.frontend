@@ -40,47 +40,54 @@ div
               .px-05.py-03.bold Семейное положение:
               .px-05.py-03.bold О себе:
             .col-8
-                .px-05.py-03.color-blue(v-if="$auth.user.phoneNumber") {{$auth.user.phoneNumber}}
+                .px-05.pb-03.pt-05.color-blue(v-if="$auth.user.phoneNumber")
+                  span.d-inlineBlock(v-for="(phone, index) in $auth.user.phoneNumber" :key="index")
+                    span.mr-03(v-if="index < 4 && phone") {{phone}},
+                    span(v-if="index+2 > $auth.user.phoneNumber.length") ...
                 .px-05.py-03.color-blue(v-else) ...
                 .px-05.py-03.color-blue(v-if="$auth.user.email") {{$auth.user.email}}
                 .px-05.py-03.color-blue(v-else) ...
                 .px-05.py-03.color-blue(v-if="$auth.user.city") {{$auth.user.city}}
                 .px-05.py-03.color-blue(v-else) ...
                 .px-05.py-03.color-blue(v-if="$auth.user.dateBirthday") {{ $auth.user.dateBirthday | formatDateNoTime }}
-                
                 .px-05.py-03.color-blue(v-else) ...
                 .px-05.py-03.color-blue(v-if="$auth.user.business")
-                  div(v-if="$auth.user.business === '0'") Не указано
-                  div(v-if="$auth.user.business === '1'") Частно лицо
-                  div(v-if="$auth.user.business === '2'") Юридическое лицо
+                  div(v-if="$auth.user.business === 0") Не указано
+                  div(v-if="$auth.user.business === 1") Частно лицо
+                  div(v-if="$auth.user.business === 2") Юридическое лицо
 
                 .px-05.py-03.color-blue(v-else) ...
                 .px-05.py-03.color-blue(v-if="$auth.user.sp")
-                  div(v-if="$auth.user.sp === '0'") Не указано
-                  div(v-if="$auth.user.sp === '1'") Свобода
-                  div(v-if="$auth.user.sp === '2'") Есть пара
-                  div(v-if="$auth.user.sp === '3'") Женат\Замужем
-                  div(v-if="$auth.user.sp === '4'") Все сложно
+                  div(v-if="$auth.user.sp === 0") Не указано
+                  div(v-if="$auth.user.sp === 1") Свобода
+                  div(v-if="$auth.user.sp === 2") Есть пара
+                  div(v-if="$auth.user.sp === 3") Женат\Замужем
+                  div(v-if="$auth.user.sp === 4") Все сложно
                 .px-05.py-03.color-blue(v-else) ...
                 .px-05.py-03.color-blue(v-if="$auth.user.about") {{$auth.user.about}}
                 .px-05.py-03.color-blue(v-else) ...
     .row.mt-1
       .col-12
         .bs.p-1.bg-white.border-radius
-          .color-gray.mb-1 Мои обьявления
-          p Вы не добавили не одного объявления! 0_0
+          .mb-1.bold.color-gray
+            span Мои публикации
+            nuxt-link.ml-03(to="/") Открыть все
+          UserPubications
 </template>
 
 <script>
 import Links from '~/components/profile/Links'
 import Status from '~/components/profile/Status'
 import AvatarViewer from '~/components/imageComponents/AvatarViewer'
+import UserPubications from '~/components/profile/Publications'
 
 export default {
+  middleware: ['authenticated', 'publications/getUserPublications'],
   components: {
     Links,
     Status,
-    AvatarViewer
+    AvatarViewer,
+    UserPubications
   },
   data: () => ({
     link: process.env.BASE_URL + '/'
@@ -93,8 +100,7 @@ export default {
       const menu = event.target.closest('.openMenu').querySelector('.menu')
       menu.hidden = !menu.hidden
     },
-  },
-  middleware: 'authenticated'
+  }
 }
 </script>
 

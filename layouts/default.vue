@@ -70,7 +70,6 @@ export default {
   overflow-y: auto;
   overflow-x: hidden;
   margin-top: $sizing;
-  
   &::-webkit-scrollbar {
     width: 4px;
     background-color: #f1f1f1;
@@ -82,5 +81,4 @@ export default {
     background-color: map-get($map: $colors, $key: blue);
   }
 }
-
 </style>

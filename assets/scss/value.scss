@@ -1,6 +1,7 @@
 $sizing: (
     '03': .3rem,
     '05': .5rem,
+    '08': .8rem,
     1: 1rem,
     12: 1.2rem,
     15: 1.5rem,
@@ -11,7 +12,8 @@ $sizing: (
 );
 
 $colors: (
-    main-1: #364c9f, 
+    main-1: #364c9f,
+    main-1-05: #364c9f50,
     main-2: #8BC34A, 
     main-3: #151515,
 

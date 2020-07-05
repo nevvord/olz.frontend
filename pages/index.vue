@@ -10,8 +10,8 @@
 <script>
 import Categories from '~/components/categories'
 import AddCircle from '~/components/ads/circle'
-import PublicationsTop from '~/components/piblications/top'
-import PublicationsAll from '~/components/piblications/all'
+import PublicationsTop from '~/components/publications/top'
+import PublicationsAll from '~/components/publications/all'
 export default {
   middleware: 'categories/getCategories',
   components: {

@@ -23,6 +23,6 @@ document.addEventListener('click', () => {
 })
 
 function textAreaAdjust(o) {
-    o.style.height = "1px";
-    o.style.height = (1+o.scrollHeight)+"px";
+    o.style.height = o.scrollHeight < 350 ? "1px" : o.style.height
+    o.style.height = o.scrollHeight < 350 ? (1+o.scrollHeight)+"px" : o.style.height
 }

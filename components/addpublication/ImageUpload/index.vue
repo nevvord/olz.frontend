@@ -55,7 +55,7 @@ export default {
     },
     addPhotos() {
       for (let index = 0; index < event.target.files.length; index++) {
-        if (this.photos.length <= 19) {
+        if (this.photos.length <= 20) {
           this.photos.push(event.target.files[index])
           this.newPhoto(event.target.files[index])
           const img = URL.createObjectURL(event.target.files[index])
@@ -64,7 +64,7 @@ export default {
           return this.$notify({
             group: 'foo',
             title: 'Валидация',
-            text: "Не более 20 фото!",
+            text: "Не более 21 фото!",
             type: 'error'
           })
         }

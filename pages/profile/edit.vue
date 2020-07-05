@@ -36,9 +36,19 @@ div
               div
                 label.display-block.bold.pb-03(for="City") Город
                 input.w-100#City(type="text" v-model="textForm.city" )
-              div
-                label.display-block.bold.pb-03.pt-1(for="PhoneNum") Номер телефона
-                input.w-100#PhoneNum(type="text" v-model="textForm.phoneNumber" )
+              div.row.m-none
+                label.display-block.bold.pb-03.pt-1.col-12.pl-none(for="PhoneNum") Номер телефона
+                .col-xl-4.p-none(
+                  v-for="(phone, index) in textForm.phoneNumber"
+                  :key="index"
+                )
+                  input(
+                    type="text"
+                    id="PhoneNum"
+                    v-model="textForm.phoneNumber[index]"
+                  )
+                .col.p-none
+                  button.btn.btn-outline-success.w-100.mr-03.mt-none.ml-none(@click="addPhoneNumber" v-if="textForm.phoneNumber.length <= 9") Добавить номер
               
             .pt-1.col-12.col-lg-6
               .bs.p-1.border-radius
@@ -183,6 +193,17 @@ export default {
     }
   },
   methods: {
+    addPhoneNumber(){
+      if(this.textForm.phoneNumber.length <= 9) {
+        this.textForm.phoneNumber.push('')
+      }else{
+        this.$notify({
+          group: 'foo',
+          text: `Максимум 10 номеров`,
+          type: 'warning'
+        })
+      }
+    },
     openMenu() {
       const menu = event.target.closest('.openMenu').querySelector('.menu')
       menu.hidden = !menu.hidden
@@ -286,9 +307,7 @@ export default {
       if(this.form.pickedAvatar){
         const fd = new FormData()
         fd.append('image', this.form.pickedAvatar, this.form.pickedAvatar.name)
-        await this.$axios
-        .put('/user/profile/change/avatar', fd)
-        .then(({data}) => {
+        await this.$axios.put('/user/profile/change/avatar', fd).then(({data}) => {
           this.$auth.user.avatar = data.user.avatar
           this.form.pickedAvatar = null
           this.$notify({
@@ -296,8 +315,7 @@ export default {
             text: data.msg,
             type: 'success'
           })
-        })
-        .catch(({response}) => {
+        }).catch(({response}) => {
           this.$notify({
             group: 'foo',
             text: response.data.msg,
@@ -310,10 +328,11 @@ export default {
         console.log(this.textForm.dateBirthday);
         
       }
-      await this.$axios
-        .put('/user/profile/change/info', {...this.textForm})
-        .then(({data}) => {
-
+      this.$axios
+        .put('/user/profile/change/info', {
+          ...this.textForm, 
+          phoneNumber: this.textForm.phoneNumber.filter(phone => phone !== '')
+        }).then(({data}) => {
           this.$auth.user.city = this.textForm.city
           this.$auth.user.phoneNumber = this.textForm.phoneNumber
           this.$auth.user.name = this.textForm.name
